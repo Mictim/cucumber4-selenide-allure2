@@ -4,20 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cucumber-selenide-allure2</groupId>
-    <artifactId>Cucumber-Selenium</artifactId>
+    <groupId>cucumber4-selenide-allure2</groupId>
+    <artifactId>Cucumber4-Selenide</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>The example of project based on Cucumber</name>
-    <url>https://github.com/vitaly-kashtalyan/cucumber-selenide-allure2</url>
 
     <properties>
         <project.java.version>1.8</project.java.version>
-        <selenide.version>4.10.01</selenide.version>
+        <selenide.version>5.2.2</selenide.version>
         <aspectj.version>1.8.10</aspectj.version>
-        <allure.version>2.6.0</allure.version>
+        <allure.version>2.10.0</allure.version>
         <allure.maven.version>2.9</allure.maven.version>
-        <maven.surefire>2.20.1</maven.surefire>
+        <maven.surefire>2.22.1</maven.surefire>
         <maven.compiler>3.7.0</maven.compiler>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -35,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber-jvm</artifactId>
+            <artifactId>allure-cucumber4-jvm</artifactId>
             <version>${allure.version}</version>
         </dependency>
         <dependency>
@@ -43,6 +42,13 @@
             <artifactId>allure-selenide</artifactId>
             <version>${allure.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>4.2.3</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -65,7 +71,7 @@
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                        -Dcucumber.options="--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
+                        -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
                     </argLine>
                     <systemProperties>
                         <property>
@@ -73,6 +79,9 @@
                             <value>${project.build.directory}/allure-results</value>
                         </property>
                     </systemProperties>
+                    <parallel>methods</parallel>
+                    <threadCount>2</threadCount>
+                    <perCoreThreadCount>false</perCoreThreadCount>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -87,7 +96,7 @@
                 <artifactId>allure-maven</artifactId>
                 <version>${allure.maven.version}</version>
                 <configuration>
-                    <reportVersion>${allure.version}</reportVersion>
+                    <reportVersion>2.7.0</reportVersion>
                 </configuration>
             </plugin>
         </plugins>
