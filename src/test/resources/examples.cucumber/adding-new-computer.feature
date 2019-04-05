@@ -1,5 +1,4 @@
 Feature: Adding a new computer
-  @FLAKY
   Scenario: user can enter a new computer
 
     Given an open browser with computer-database
