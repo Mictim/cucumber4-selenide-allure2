@@ -13,4 +13,4 @@ Feature: Computer database search
     Given an open browser with computer-database
     When  enter a name IBM in filter field
     Then  the header should contain computers found
-    Then  top 10 matches should be shown
+    #Then  top 10 matches should be shown
